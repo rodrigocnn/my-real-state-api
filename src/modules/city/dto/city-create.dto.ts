@@ -1,3 +1,11 @@
+import { IsNotEmpty, IsString } from 'class-validator';
+
 export class CityCreateDto {
-  readonly name: string;
+  @IsString({
+    message: 'Deve ser uma string',
+  })
+  @IsNotEmpty({
+    message: 'Não deve ser vazio',
+  })
+  name: string;
 }

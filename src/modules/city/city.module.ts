@@ -2,11 +2,12 @@ import { Module } from '@nestjs/common';
 
 import { CityController } from './city.controller';
 import { CityService } from './city.service';
-import { CityMemoryRepository } from './repository/city-memory-repository';
+import { PrismaModule } from 'src/prisma/prisma.module';
+import { CityPrismaRepository } from './repository/city-prisma-repository';
 
 @Module({
-  imports: [],
+  imports: [PrismaModule],
   controllers: [CityController],
-  providers: [CityService, CityMemoryRepository],
+  providers: [CityService, CityPrismaRepository],
 })
 export class CityModule {}

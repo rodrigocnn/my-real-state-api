@@ -10,6 +10,9 @@ export class CityMemoryRepository implements CityRepository {
 
   create(city: CityCreateDto): Promise<CityResponseDto | null> {
     const id = (Math.random() * 1e18).toString(36);
+
+    console.log('criando', city);
+
     const newCity: City = {
       id,
       ...city,
