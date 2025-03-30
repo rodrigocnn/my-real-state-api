@@ -33,6 +33,14 @@ export class UserMemoryRepository implements UserRepository {
     return Promise.resolve(user);
   }
 
+  findByEmail(email: string): Promise<UserResponseDto> {
+    const user = this.users.find((u) => u.email === email);
+    if (!user) {
+      return Promise.reject(new Error('User not found'));
+    }
+    return Promise.resolve(user);
+  }
+
   update(id: string, user: UserCreateDto): Promise<UserResponseDto | null> {
     const index = this.users.findIndex((u) => u.id === id);
     if (index === -1) {
