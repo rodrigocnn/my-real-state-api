@@ -1,19 +1,23 @@
 export enum PropertyPurpose {
-  SALE = 'sale',
-  RENT = 'rent',
-  LEASE = 'lease',
+  SALE = 'venda',
+  RENT = 'alugar',
 }
 
 export class Property {
   id: string;
+  title: string;
+  negotiationType: PropertyPurpose;
   description: string;
-  rooms: number;
+  bedrooms: number;
+  bathrooms: number;
+  suites: number;
+  price: number;
   address: string;
-  reference: string;
+  latitude: number | null;
+  longitude: number | null;
   neighborhood: string;
-  cityId: string; // Relacionando com o ID da cidade
+  cityId: string;
   state: string;
-  purpose: PropertyPurpose; // Usando o Enum para garantir que seja um valor específico
-  createdAt?: Date; // Data de criação, opcional
-  updatedAt?: Date; // Data de atualização, opcional
+  createdAt?: Date;
+  updatedAt?: Date;
 }
