@@ -1,12 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 
 import { CityResponseDto } from './dto/city-response.dto';
 import { CityCreateDto } from './dto/city-create.dto';
-import { CityPrismaRepository } from './repository/city-prisma-repository';
+import { CityRepository } from './repository/city-repository';
 
 @Injectable()
 export class CityService {
-  constructor(private readonly cityRepository: CityPrismaRepository) {}
+  constructor(@Inject('CityRepository') private readonly cityRepository: CityRepository) {}
 
   create(cityData: CityCreateDto): Promise<CityResponseDto | null> {
     return this.cityRepository.create(cityData);

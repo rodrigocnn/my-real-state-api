@@ -9,7 +9,13 @@ describe('CityService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [CityService, CityMemoryRepository],
+      providers: [
+        CityService,
+        {
+          provide: 'CityRepository',
+          useClass: CityMemoryRepository,
+        },
+      ],
     }).compile();
 
     service = module.get<CityService>(CityService);

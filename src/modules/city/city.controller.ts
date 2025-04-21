@@ -1,13 +1,15 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { CityService } from './city.service';
 import { CityResponseDto } from './dto/city-response.dto';
 import { CityCreateDto } from './dto/city-create.dto';
+import { AutenticationGuard } from '../auth/autentication/autentication.guard';
 
 @Controller('cidades')
 export class CityController {
   constructor(private readonly cityService: CityService) {}
 
   @Get()
+  @UseGuards(AutenticationGuard)
   async findAll(): Promise<CityResponseDto[]> {
     return this.cityService.findAll();
   }
