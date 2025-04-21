@@ -22,8 +22,18 @@ export class RentalContractPrismaRepository implements RentalContractRepository 
   }
 
   async findAll(): Promise<RentalContractResponseDto[]> {
-    const rentalContracts = await this.prisma.rentalContract.findMany();
-    return rentalContracts;
+    const rentalContracts = await this.prisma.rentalContract.findMany({
+      include: {
+        client: true,
+        property: true,
+      },
+    });
+
+    return rentalContracts.map((contract) => ({
+      ...contract,
+      clientName: contract.client.name,
+      propertyTitle: contract.property.title,
+    }));
   }
 
   async findById(id: string): Promise<RentalContractResponseDto> {
