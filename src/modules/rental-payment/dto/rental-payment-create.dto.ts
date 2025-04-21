@@ -1,35 +1,38 @@
-import { IsEnum, IsNotEmpty, IsOptional, IsString, IsNumber, IsDate } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsOptional, IsString, IsNumber, IsDate, Min } from 'class-validator';
 import { RentPaymentStatus } from '../models/rent-payment-status.enum';
 import { Type } from 'class-transformer';
 
 export class RentalPaymentCreateDto {
-  @IsNotEmpty()
-  @IsString()
+  @IsString({ message: 'O ID do contrato de aluguel deve ser uma string' })
+  @IsNotEmpty({ message: 'O ID do contrato de aluguel não pode ser vazio' })
   rentalContractId: string;
 
-  @IsNotEmpty()
-  @IsDate()
   @Type(() => Date)
+  @IsDate({ message: 'A data de vencimento deve ser uma data válida' })
+  @IsNotEmpty({ message: 'A data de vencimento não pode ser vazia' })
   dueDate: Date;
 
   @IsOptional()
-  @IsDate()
   @Type(() => Date)
+  @IsDate({ message: 'A data de pagamento deve ser uma data válida' })
   paymentDate?: Date;
 
-  @IsNotEmpty()
-  @IsNumber()
+  @IsNumber({}, { message: 'O valor deve ser um número' })
+  @Min(0, { message: 'O valor não pode ser negativo' })
+  @IsNotEmpty({ message: 'O valor não pode ser vazio' })
   amount: number;
 
-  @IsNotEmpty()
-  @IsEnum(RentPaymentStatus)
+  @IsEnum(RentPaymentStatus, { message: 'O status deve ser um valor válido' })
+  @IsNotEmpty({ message: 'O status não pode ser vazio' })
   status: RentPaymentStatus;
 
   @IsOptional()
-  @IsDate()
+  @Type(() => Date)
+  @IsDate({ message: 'A data de criação deve ser uma data válida' })
   createdAt?: Date;
 
   @IsOptional()
-  @IsDate()
+  @Type(() => Date)
+  @IsDate({ message: 'A data de atualização deve ser uma data válida' })
   updatedAt?: Date;
 }
