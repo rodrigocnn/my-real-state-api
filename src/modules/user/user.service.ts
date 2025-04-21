@@ -1,16 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { UserResponseDto } from './dto/user-response.dto';
 
-import { UserMemoryRepository } from './repository/user-memory.repository';
 import { UserCreateDto } from './dto/user-create.dto';
+import { UserRepository } from './repository/user.repository';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly userRepository: UserMemoryRepository) {}
-
-  findByEmail(email: string): Promise<UserResponseDto> {
-    return this.userRepository.findByEmail(email);
-  }
+  constructor(@Inject('UserRepository') private readonly userRepository: UserRepository) {}
 
   create(user: UserCreateDto): Promise<UserResponseDto | null> {
     return this.userRepository.create(user);
