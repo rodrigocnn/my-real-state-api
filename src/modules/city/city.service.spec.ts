@@ -67,6 +67,6 @@ describe('CityService', () => {
     cityData.name = '';
     const errors = await validate(cityData);
     expect(errors.length).toBeGreaterThan(0);
-    expect(errors[0].constraints).toEqual({ isNotEmpty: 'Não deve ser vazio' });
+    expect(errors[0].constraints).toEqual({ isNotEmpty: 'O campo name não deve ser vazio' });
   });
 });
