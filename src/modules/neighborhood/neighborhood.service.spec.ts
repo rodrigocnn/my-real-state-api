@@ -7,7 +7,13 @@ describe('NeighborhoodService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [NeighborhoodService, NeighborhoodMemoryRepository],
+      providers: [
+        NeighborhoodService,
+        {
+          provide: 'NeighborhoodRepository',
+          useClass: NeighborhoodMemoryRepository,
+        },
+      ],
     }).compile();
 
     service = module.get<NeighborhoodService>(NeighborhoodService);

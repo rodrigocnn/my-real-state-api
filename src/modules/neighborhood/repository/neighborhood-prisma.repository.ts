@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
+
 import { NeighborhoodCreateDto } from '../dto/neighborhood-create.dto';
 import { NeighborhoodResponseDto } from '../dto/neighborhood-response.dto';
 import { NeighborhoodRepository } from './neighborhood.repository';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class NeighborhoodPrismaRepository implements NeighborhoodRepository {

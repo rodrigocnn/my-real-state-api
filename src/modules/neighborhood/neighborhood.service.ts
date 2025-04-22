@@ -1,12 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 
 import { NeighborhoodResponseDto } from './dto/neighborhood-response.dto';
 import { NeighborhoodCreateDto } from './dto/neighborhood-create.dto';
-import { NeighborhoodPrismaRepository } from './repository/neighborhood-prisma.repository';
+import { NeighborhoodRepository } from './repository/neighborhood.repository';
 
 @Injectable()
 export class NeighborhoodService {
-  constructor(private readonly neighborhoodRepository: NeighborhoodPrismaRepository) {}
+  constructor(
+    @Inject('NeighborhoodRepository')
+    private readonly neighborhoodRepository: NeighborhoodRepository,
+  ) {}
 
   create(neighborhoodData: NeighborhoodCreateDto): Promise<NeighborhoodResponseDto | null> {
     return this.neighborhoodRepository.create(neighborhoodData);
