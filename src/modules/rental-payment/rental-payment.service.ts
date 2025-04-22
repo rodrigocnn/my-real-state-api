@@ -1,13 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 
 import { RentalPaymentResponseDto } from './dto/rental-payment-response.dto';
 
-import { RentalPaymentPrismaRepository } from './repository/rental-payment-prisma.repository';
 import { RentalPaymentCreateDto } from './dto/rental-payment-create.dto';
+import { RentalPaymentRepository } from './repository/rental-payment.repository';
 
 @Injectable()
 export class RentalPaymentService {
-  constructor(private readonly rentalPaymentRepository: RentalPaymentPrismaRepository) {}
+  constructor(
+    @Inject('RentalPaymentRepository')
+    private readonly rentalPaymentRepository: RentalPaymentRepository,
+  ) {}
 
   async create(
     createRentalPaymentDto: RentalPaymentCreateDto,
