@@ -3,7 +3,7 @@ export class RentalContract {
   clientId: string;
   propertyId: string;
   startDate: string;
-  endDate?: string;
+  endDate: string;
   monthlyRent: number;
   depositAmount?: number;
   status: string;

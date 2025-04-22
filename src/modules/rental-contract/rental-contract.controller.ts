@@ -9,7 +9,7 @@ export class RentalContractController {
   constructor(private readonly rentalContractService: RentalContractService) {}
 
   @Get()
-  async findAll(): Promise<RentalContractResponseDto[]> {
+  async findAll(): Promise<RentalContractResponseDto[] | null> {
     return this.rentalContractService.findAll();
   }
 

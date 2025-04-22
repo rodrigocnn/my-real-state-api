@@ -13,7 +13,6 @@ export class RentalContractResponseDto {
   @IsDateString()
   startDate: Date | null;
 
-  @IsOptional()
   @IsDateString()
   endDate?: Date | null;
 

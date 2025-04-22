@@ -3,7 +3,7 @@ import { RentalContractResponseDto } from '../dto/rental-contract-response.dto';
 
 export interface RentalContractRepository {
   create(rentalContract: RentalContractCreateDto): Promise<RentalContractResponseDto | null>;
-  findAll(): Promise<RentalContractResponseDto[]>;
+  findAll(): Promise<RentalContractResponseDto[] | null>;
   findById(id: string): Promise<RentalContractResponseDto>;
   update(
     id: string,

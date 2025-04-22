@@ -1,12 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 
 import { RentalContractResponseDto } from './dto/rental-contract-response.dto';
 import { RentalContractCreateDto } from './dto/rental-contract-create.dto';
-import { RentalContractPrismaRepository } from './repository/rental-contract-prisma.repository';
+import { RentalContractRepository } from './repository/rental-contract.repository';
 
 @Injectable()
 export class RentalContractService {
-  constructor(private readonly rentalContractRepository: RentalContractPrismaRepository) {}
+  constructor(
+    @Inject('RentalContractRepository')
+    private readonly rentalContractRepository: RentalContractRepository,
+  ) {}
 
   async create(
     rentalContractData: RentalContractCreateDto,
@@ -14,7 +17,7 @@ export class RentalContractService {
     return this.rentalContractRepository.create(rentalContractData);
   }
 
-  async findAll(): Promise<RentalContractResponseDto[]> {
+  async findAll(): Promise<RentalContractResponseDto[] | null> {
     return this.rentalContractRepository.findAll();
   }
 

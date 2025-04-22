@@ -20,9 +20,8 @@ export class RentalContractCreateDto {
   @IsDateString({}, { message: 'A data de início deve ser uma data válida' })
   startDate: string;
 
-  @IsOptional()
   @IsDateString({}, { message: 'A data de término deve ser uma data válida' })
-  endDate?: string;
+  endDate: string;
 
   @IsNumber({}, { message: 'O valor do aluguel deve ser um número' })
   @Min(0, { message: 'O valor do aluguel não pode ser negativo' })

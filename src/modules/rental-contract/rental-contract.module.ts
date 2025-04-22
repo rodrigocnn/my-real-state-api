@@ -8,6 +8,13 @@ import { RentalContractPrismaRepository } from './repository/rental-contract-pri
 @Module({
   imports: [PrismaModule],
   controllers: [RentalContractController],
-  providers: [RentalContractService, RentalContractPrismaRepository],
+  providers: [
+    RentalContractService,
+    {
+      provide: 'RentalContractRepository',
+      useClass: RentalContractPrismaRepository,
+    },
+  ],
+  exports: [RentalContractService],
 })
 export class RentalContractModule {}
