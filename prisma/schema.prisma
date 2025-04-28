@@ -39,6 +39,10 @@ model Property {
   cityId          String   
   state           String  
   address         String?
+
+  propertyTypeId  String?    
+  propertyType    PropertyType? @relation(fields: [propertyTypeId], references: [id])
+
   createdAt       DateTime @default(now()) 
   updatedAt       DateTime @updatedAt 
   rentalContracts RentalContract[]
@@ -69,7 +73,7 @@ model RentalContract {
   updatedAt     DateTime @updatedAt 
   client   Client   @relation(fields: [clientId], references: [id])  
   property Property @relation(fields: [propertyId], references: [id])  
-  payments      RentPayment[]  // Relacionamento com RentPayment
+  payments      RentPayment[] 
 }
 
 model RentPayment {
@@ -98,6 +102,14 @@ model User{
     password      String
     createdAt     DateTime      @default(now())
     updatedAt     DateTime      @updatedAt
+}
+
+model PropertyType{
+    id            String   @id @default(cuid()) 
+    name          String
+    createdAt     DateTime      @default(now())
+    updatedAt     DateTime      @updatedAt
+    properties    Property[] 
 }
 
 

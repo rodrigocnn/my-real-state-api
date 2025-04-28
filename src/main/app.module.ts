@@ -10,10 +10,12 @@ import { ClientModule } from 'src/modules/client/client.module';
 import { RentalContractModule } from 'src/modules/rental-contract/rental-contract.module';
 import { RentalPaymentModule } from 'src/modules/rental-payment/rental-payment.module';
 import { AuthModule } from 'src/modules/auth/auth.module';
+import { PropertyTypesModule } from 'src/modules/property-types/property-types.module';
 
 @Module({
   imports: [
     PropertyModule,
+    PropertyTypesModule,
     CityModule,
     UserModule,
     NeighborhoodModule,

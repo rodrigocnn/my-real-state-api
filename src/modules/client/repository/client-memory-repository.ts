@@ -9,9 +9,7 @@ export class ClientMemoryRepository implements ClientRepository {
   private clients: Client[] = [];
 
   async create(client: ClientCreateDto): Promise<ClientResponseDto | null> {
-    const id = (Math.random() * 1e18).toString(36); // Gerando ID fictício
-
-    console.log('Criando cliente:', client);
+    const id = (Math.random() * 1e18).toString(36);
 
     const newClient: Client = {
       id,
